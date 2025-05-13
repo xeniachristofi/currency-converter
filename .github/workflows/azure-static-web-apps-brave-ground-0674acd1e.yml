@@ -14,7 +14,7 @@ jobs:
   build_angular_job:
     steps:
       - name: Build Angular
-      - run: npm i; ng build
+        run: npm i; ng build
 
   deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
