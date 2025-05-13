@@ -12,6 +12,7 @@ on:
 jobs:
 
   build_angular_job:
+    runs-on: ubuntu-latest
     steps:
       - name: Build Angular
         run: npm i; ng build
