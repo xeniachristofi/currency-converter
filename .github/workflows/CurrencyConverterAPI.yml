@@ -25,7 +25,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Cleanup
-      run: rmdir C:\Program Files\dotnet\sdk
+      run: rmdir "C:\Program Files\dotnet\sdk"
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v4
       with:
