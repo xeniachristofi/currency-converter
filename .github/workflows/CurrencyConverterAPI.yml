@@ -31,7 +31,7 @@ jobs:
     - name: Setup .NET SDK v9
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 9.0.0
+        dotnet-version: 9.0.x
     - name: Setup Swashbuckle .NET Core
       uses: actions/setup-dotnet@v4
       with:
