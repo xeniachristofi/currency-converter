@@ -1,18 +1,19 @@
 <div class="tile">
   <h1>Convert Currencies</h1>
   <div class="row">
-    <app-dropdown elementId="ddlFrom"  label="From" [form]="(form | formControl: 'fromCurrency')"></app-dropdown>
-    <app-dropdown elementId="ddlTo"  label="To" [form]="(form | formControl: 'toCurrency')"></app-dropdown>
+    <app-dropdown elementId="ddlFrom"  label="From" [form]="(form | formControl: 'fromCurrency')" [options]="options"></app-dropdown>
+    <app-dropdown elementId="ddlTo"  label="To" [form]="(form | formControl: 'toCurrency')" [options]="options"></app-dropdown>
     <app-text-box elementId="txtAmount" label="Amount" [type]="inputType.Number" [form]="(form | formControl: 'amount')"></app-text-box>
   </div>
-  <div class="row">
+  <div class="row button">
     <app-button label="Convert" (click)="convert()"></app-button>
   </div>
-  <div class="row">
+  <div class="row result">
     @if(result) {
-      <div class="row result">
-      <p>{{result}}</p>
-    </div>
+      <p>{{ result}} </p>
+    }
+    @else {
+      <p>Select currencies to convert between.</p>
     }
   </div>
 </div>

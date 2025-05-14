@@ -1,6 +1,9 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, effect, inject, input, output } from '@angular/core';
 import { IDropdownOption } from '../../models/dropdown-option';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
+import { CurrencyService } from '../../services/currency.service';
+import { take } from 'rxjs';
+import { Currency } from '../../models/currency';
 
 @Component({
   selector: 'app-dropdown',
@@ -12,18 +15,11 @@ export class DropdownComponent {
   elementId = input('elementId');
   label = input('');
   form = input<UntypedFormControl>(new UntypedFormControl(''));
+  formValue = computed(() => this.form().value);
+  options = input<IDropdownOption[]>([]);
 
-  options: IDropdownOption[] = [
-    { key: 'USD', value: 'United States Dollar' },
-    { key: 'EUR', value: 'Euro' },
-    { key: 'JPY', value: 'Japanese Yen' },
-    { key: 'GBP', value: 'British Pound Sterling' },
-    { key: 'AUD', value: 'Australian Dollar' },
-    { key: 'CAD', value: 'Canadian Dollar' },
-    { key: 'CHF', value: 'Swiss Franc' },
-    { key: 'CNY', value: 'Chinese Yuan Renminbi' },
-    { key: 'SEK', value: 'Swedish Krona' },
-    { key: 'NZD', value: 'New Zealand Dollar' }
-  ];
+  valueChange = output();
 
+  constructor() {
+  }
 }
