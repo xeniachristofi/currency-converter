@@ -27,11 +27,11 @@ jobs:
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+        global-json-file: CurrencyConverterAPI/global.json
     - name: Setup Swashbuckle .NET Core
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: ${{ env.SWASHBUCKLE_DOTNET_CORE_VERSION }}
+        global-json-file: CurrencyConverterAPI/global.json
     - name: Restore
       run: dotnet restore ${{ env.WORKING_DIRECTORY }}
     - name: Build
