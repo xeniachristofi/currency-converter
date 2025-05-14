@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace CurrencyConverterAPI.Controllers
 {
   [ApiController]
-  [Route("[controller]")]
   public class ConversionController : ControllerBase
   {
     // Mock list of currencies and exchange rates (relative to USD)
@@ -23,7 +22,7 @@ namespace CurrencyConverterAPI.Controllers
       _logger = logger;
     }
 
-    [HttpGet(Name = "convert")]
+    [HttpGet("convert")]
     public float ConvertCurrency(string from, string to, float amount = 1)
     {
       var fromCurrency = Currencies.FirstOrDefault(c => c.Code == from);
