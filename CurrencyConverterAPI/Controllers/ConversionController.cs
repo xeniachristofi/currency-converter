@@ -2,44 +2,68 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CurrencyConverterAPI.Controllers
 {
-  [ApiController]
-  public class ConversionController : ControllerBase
-  {
-    // Mock list of currencies and exchange rates (relative to USD)
-    private static readonly List<Currency> Currencies = new List<Currency>()
+    /// <summary>
+    /// Controller for handling currency conversion operations.
+    /// </summary>
+    [ApiController]
+    public class ConversionController : ControllerBase
     {
-      new Currency { Code = "USD", ExchangeRate = 1.0f },
-      new Currency { Code = "EUR", ExchangeRate = 0.85f },
-      new Currency { Code = "ZAR", ExchangeRate = 0.055f },
-      new Currency { Code = "GBP", ExchangeRate = 0.75f },
-    };
- 
+        // Mock list of currencies and exchange rates (relative to USD)
+        private static readonly List<Currency> Currencies = new List<Currency>()
+        {
+          new Currency { Code = "USD", Name = "US Dollar", ExchangeRate = 1.0f },
+          new Currency { Code = "EUR", Name = "Euro", ExchangeRate = 0.85f },
+          new Currency { Code = "JPY", Name = "Japanese Yen", ExchangeRate = 110.0f },
+          new Currency { Code = "ZAR", Name = "South African Rand", ExchangeRate = 0.055f },
+          new Currency { Code = "GBP", Name = "Great British Pound", ExchangeRate = 0.75f },
+          new Currency { Code = "AUD", Name = "Australian Dollar", ExchangeRate = 1.35f },
+          new Currency { Code = "CAD", Name = "Canadian Dollar", ExchangeRate = 1.25f },
+          new Currency { Code = "CNY", Name = "Chinese Yuan", ExchangeRate = 6.5f },
+          new Currency { Code = "INR", Name = "Indian Rupee", ExchangeRate = 74.0f },
+          new Currency { Code = "BRL", Name = "Brazilian Real", ExchangeRate = 5.25f },
+        };
 
-    private readonly ILogger<ConversionController> _logger;
+        private readonly ILogger<ConversionController> _logger;
 
-    public ConversionController(ILogger<ConversionController> logger)
-    {
-      _logger = logger;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConversionController"/> class.
+        /// </summary>
+        /// <param name="logger">The logger instance.</param>
+        public ConversionController(ILogger<ConversionController> logger)
+        {
+            _logger = logger;
+        }
+
+        /// <summary>
+        /// Converts an amount from one currency to another.
+        /// </summary>
+        /// <param name="from">The currency code to convert from.</param>
+        /// <param name="to">The currency code to convert to.</param>
+        /// <param name="amount">The amount to convert. Defaults to 1.</param>
+        /// <returns>The converted amount in the target currency.</returns>
+        /// <exception cref="ArgumentException">Thrown when an invalid currency code is provided.</exception>
+        [HttpGet("convert")]
+        public float ConvertCurrency(string from, string to, float amount = 1)
+        {
+            var fromCurrency = Currencies.FirstOrDefault(c => c.Code == from);
+            var toCurrency = Currencies.FirstOrDefault(c => c.Code == to);
+            if (fromCurrency == null || toCurrency == null)
+            {
+                throw new ArgumentException("Invalid currency code.");
+            }
+            // Convert the amount to USD first, then to the target currency
+            var amountInUSD = amount / fromCurrency.ExchangeRate;
+            return amountInUSD * toCurrency.ExchangeRate;
+        }
+
+        /// <summary>
+        /// Retrieves the list of available currencies and their exchange rates compared to USD.
+        /// </summary>
+        /// <returns>A list of currencies.</returns>
+        [HttpGet("list")]
+        public IEnumerable<Currency> GetCurrencies()
+        {
+            return Currencies;
+        }
     }
-
-    [HttpGet("convert")]
-    public float ConvertCurrency(string from, string to, float amount = 1)
-    {
-      var fromCurrency = Currencies.FirstOrDefault(c => c.Code == from);
-      var toCurrency = Currencies.FirstOrDefault(c => c.Code == to);
-      if (fromCurrency == null || toCurrency == null)
-      {
-        throw new ArgumentException("Invalid currency code.");
-      }
-      // Convert the amount to USD first, then to the target currency
-      var amountInUSD = amount / fromCurrency.ExchangeRate;
-      return amountInUSD * toCurrency.ExchangeRate;
-    }
-
-    [HttpGet("list")]
-    public IEnumerable<Currency> GetCurrencies()
-    {
-      return Currencies;
-    }
-  }
 }
