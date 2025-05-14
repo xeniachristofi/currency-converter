@@ -1,15 +1,17 @@
 import { Component, input } from '@angular/core';
 import { IDropdownOption } from '../../models/dropdown-option';
+import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-dropdown',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss'
 })
 export class DropdownComponent {
   elementId = input('elementId');
   label = input('');
+  form = input<UntypedFormControl>(new UntypedFormControl(''));
 
   options: IDropdownOption[] = [
     { key: 'USD', value: 'United States Dollar' },

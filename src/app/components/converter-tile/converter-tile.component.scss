@@ -1,0 +1,22 @@
+.tile {
+    margin: 0 auto;
+    background: var(--lightest);
+    width: auto;
+    height: 100%;
+    max-width: fit-content;
+    padding: 4px 16px;
+    border-radius: 8px;
+    color: var(--dark);
+    transition: all 0.3s ease;
+
+    h1 {
+        margin-block: 0;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .row {
+    column-count: 3;
+    margin-bottom: 4px;
+    }
+}

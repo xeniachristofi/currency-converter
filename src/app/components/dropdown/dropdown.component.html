@@ -1,6 +1,6 @@
 <div [id]="elementId()" class="dropdown">
     <label for="currency-select">{{label()}}</label>
-    <select id="currency-select" name="currency">
+    <select id="currency-select" name="currency" [formControl]="form()">
         <option value="" disabled selected>Select an option</option>
          @for( option of options; track option.key ){
             <option [value]="option.key">{{option.value}}</option>

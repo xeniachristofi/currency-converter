@@ -1,4 +1,4 @@
 <div class="textbox container">
     <label [for]="elementId()">{{label()}}</label>
-<input [id]="elementId()" [type]="type()" class="text-box" />
+    <input [id]="elementId()" [type]="type()" class="text-box"  [formControl]="form()" step="0.01" />
 </div>

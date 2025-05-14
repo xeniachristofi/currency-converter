@@ -1,4 +1,5 @@
 import { Component, input, Signal } from '@angular/core';
+import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 
 export enum InputType {
   Text = 'text',
@@ -11,14 +12,13 @@ export enum InputType {
 
 @Component({
   selector: 'app-text-box',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './text-box.component.html',
   styleUrl: './text-box.component.scss'
 })
 export class TextBoxComponent {
-
-  
   elementId = input('elementId');
   label = input('');
   type = input<InputType>(InputType.Text);
+  form = input<UntypedFormControl>(new UntypedFormControl('33'));
 }
