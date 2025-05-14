@@ -12,7 +12,7 @@ env:
   AZURE_APIM_API_ID: CurrencyConverterAPI
   AZURE_APIM_APPSERVICEURL: https://currencyconverterapi-fjbjdzgndrh0h0e5.canadacentral-01.azurewebsites.net
   SWASHBUCKLE_ASPNET_CORE_CLI_PACKAGE_VERSION: 8.1.1
-  SWASHBUCKLE_DOTNET_CORE_VERSION: 3.1.x
+  SWASHBUCKLE_DOTNET_CORE_VERSION: 8.1.x
   API_IMPORT_SPECIFICATION_PATH: .\bin\Release\net8.0\swagger.json
   API_IMPORT_DLL: .\bin\Release\net8.0\CurrencyConverterAPI.dll
   API_IMPORT_VERSION: v1
@@ -26,9 +26,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
-    - name: Setup SwashBuckle .NET Core
+    - name: Setup Swashbuckle .NET Core
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ env.SWASHBUCKLE_DOTNET_CORE_VERSION }}
