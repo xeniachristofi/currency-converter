@@ -14,7 +14,7 @@ namespace CurrencyConverterAPI.Controllers
           new Currency { Code = "USD", Name = "US Dollar", ExchangeRate = 1.0f },
           new Currency { Code = "EUR", Name = "Euro", ExchangeRate = 0.85f },
           new Currency { Code = "JPY", Name = "Japanese Yen", ExchangeRate = 110.0f },
-          new Currency { Code = "ZAR", Name = "South African Rand", ExchangeRate = 0.055f },
+          new Currency { Code = "ZAR", Name = "South African Rand", ExchangeRate = 18.26f },
           new Currency { Code = "GBP", Name = "Great British Pound", ExchangeRate = 0.75f },
           new Currency { Code = "AUD", Name = "Australian Dollar", ExchangeRate = 1.35f },
           new Currency { Code = "CAD", Name = "Canadian Dollar", ExchangeRate = 1.25f },
