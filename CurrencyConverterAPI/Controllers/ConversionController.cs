@@ -24,7 +24,7 @@ namespace CurrencyConverterAPI.Controllers
     }
 
     [HttpGet(Name = "convert")]
-    public float ConvertCurrency(string from, string to, float amount)
+    public float ConvertCurrency(string from, string to, float amount = 1)
     {
       var fromCurrency = Currencies.FirstOrDefault(c => c.Code == from);
       var toCurrency = Currencies.FirstOrDefault(c => c.Code == to);
@@ -35,6 +35,12 @@ namespace CurrencyConverterAPI.Controllers
       // Convert the amount to USD first, then to the target currency
       var amountInUSD = amount / fromCurrency.ExchangeRate;
       return amountInUSD * toCurrency.ExchangeRate;
+    }
+
+    [HttpGet("list")]
+    public IEnumerable<Currency> GetCurrencies()
+    {
+      return Currencies;
     }
   }
 }
