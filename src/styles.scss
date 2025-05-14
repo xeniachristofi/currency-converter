@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --darkest: #033649;
+    --dark: #036564;
+    --medium: #77cccb;
+    --light: #bae4e5;
+    --lightest: #e9fffc;
+}
+
+* {
+    font-family: 'Poppins', 'Verdana', sans-serif;
+}
+
+
+body {
+    margin: 0;
+    background-color: var(--light);
+    background-image: url(https://www.transparenttextures.com/patterns/cartographer.png);
+    background-blend-mode: color-dodge;
+
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--medium);
+    color: var(--dark);
+    padding: 8px;
+    text-align: center;
+}
