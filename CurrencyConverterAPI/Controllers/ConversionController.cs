@@ -51,6 +51,10 @@ namespace CurrencyConverterAPI.Controllers
             {
                 throw new ArgumentException("Invalid currency code.");
             }
+            if (amount < 0)
+            {
+                throw new ArgumentException("Amount must be a positive number.");
+            }
             // Convert the amount to USD first, then to the target currency
             var amountInUSD = amount / fromCurrency.ExchangeRate;
             return amountInUSD * toCurrency.ExchangeRate;
