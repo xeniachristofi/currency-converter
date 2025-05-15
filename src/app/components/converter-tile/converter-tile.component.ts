@@ -42,10 +42,10 @@ export class ConverterTileComponent {
   }
 
   public convert() {
-    const convertedAmount = this.currencyService.convertCurrency(this.form.value.fromCurrency ?? '', this.form.value.toCurrency ?? '', this.form.value.amount ?? '1');
+    const convertedAmount = this.currencyService.convertCurrency(this.form.value.toCurrency ?? '', this.form.value.fromCurrency ?? '', this.form.value.amount ?? '1');
     convertedAmount.subscribe({
      next: (data: any) => {
-      this.result = `${this.form.value.amount} ${this.form.value.fromCurrency} is ${data} ${this.form.value.toCurrency}`;
+      this.result = `${this.form.value.amount ?? ''} ${this.form.value.fromCurrency ?? ''} is ${data} ${this.form.value.toCurrency ?? ''}`;
     },
     error: (error: any) => {
       console.error('Error converting currency:', error);

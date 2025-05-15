@@ -16,7 +16,7 @@ export class CurrencyService {
     return this.httpService.get<Currency[]>('list');
   }
 
-  public convertCurrency(from: string, to: string, amount: string): Observable<number> {
+  public convertCurrency(to: string, from: string, amount: string): Observable<number> {
     return this.httpService.get<number>(`convert?to=${to}&from=${from}&amount=${amount}`);
   }
 

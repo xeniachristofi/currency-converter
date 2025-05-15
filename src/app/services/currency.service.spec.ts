@@ -30,7 +30,7 @@ describe('CurrencyService', () => {
   });
   describe('convertCurrency', () => {
     it('should call HTTP service with correct parameters', () => {
-      service.convertCurrency('USD', 'EUR', '100');
+      service.convertCurrency('EUR', 'USD', '100');
       expect(spy).toHaveBeenCalledWith('convert?to=EUR&from=USD&amount=100');
     });
   })
