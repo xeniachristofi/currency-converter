@@ -1,14 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConverterTileComponent } from './converter-tile.component';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpService } from '../../services/http.service';
 
 describe('ConverterTileComponent', () => {
   let component: ConverterTileComponent;
   let fixture: ComponentFixture<ConverterTileComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ConverterTileComponent]
+    TestBed.configureTestingModule({
+      imports: [ConverterTileComponent],
+      providers: [provideHttpClient(withInterceptorsFromDi()), HttpService ]
     })
     .compileComponents();
 
