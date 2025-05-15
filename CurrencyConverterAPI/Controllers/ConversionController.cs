@@ -71,13 +71,13 @@ namespace CurrencyConverterAPI.Controllers
         }
 
 
-        [HttpGet("exchangeRate")]
         /// <summary>
         /// Retrieves the exchange rate for a specific currency code.
         /// </summary>
         /// <param name="code">The currency code to retrieve the exchange rate for.</param>
         /// <returns>The exchange rate of the specified currency relative to USD.</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid currency code is provided.</exception>
+        [HttpGet("exchangeRate")]
         public double GetExchangeRateForCurrency(string code)
         {
             var currency = Currencies.FirstOrDefault(c => c.Code == code); 

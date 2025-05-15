@@ -80,5 +80,14 @@ namespace CurrencyConverterAPI.Tests.Controllers
         {
             Assert.Throws<ArgumentException>(() => _controller.ConvertCurrency("USD", "EUR", -5));
         }
+
+    /// <summary>
+    /// Tests that <see cref="ConversionController.GetExchangeRateForCurrency"/> returns a correct value.
+    /// </summary>
+    [Test]
+    public void GetExchangeRateForCurrency_ReturnsTrue()
+    {
+      Assert.That(_controller.GetExchangeRateForCurrency("USD"), Is.EqualTo(1), "Exchange rate for USD should be 1.");
     }
+  }
 }
