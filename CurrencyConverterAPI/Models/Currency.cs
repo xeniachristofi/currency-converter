@@ -6,7 +6,7 @@ namespace CurrencyConverterAPI
 
     public string Name { get; set; } = "";
 
-    public float ExchangeRate { get; set; }
+    public double ExchangeRate { get; set; }
 
 
   }

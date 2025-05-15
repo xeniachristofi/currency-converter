@@ -9,18 +9,18 @@ namespace CurrencyConverterAPI.Controllers
     public class ConversionController : ControllerBase
     {
         // Mock list of currencies and exchange rates (relative to USD)
-        private static readonly List<Currency> Currencies = new List<Currency>()
+        private readonly List<Currency> Currencies = new List<Currency>()
         {
-          new Currency { Code = "USD", Name = "US Dollar", ExchangeRate = 1.0f },
-          new Currency { Code = "EUR", Name = "Euro", ExchangeRate = 0.85f },
-          new Currency { Code = "JPY", Name = "Japanese Yen", ExchangeRate = 110.0f },
-          new Currency { Code = "ZAR", Name = "South African Rand", ExchangeRate = 18.26f },
-          new Currency { Code = "GBP", Name = "Great British Pound", ExchangeRate = 0.75f },
-          new Currency { Code = "AUD", Name = "Australian Dollar", ExchangeRate = 1.35f },
-          new Currency { Code = "CAD", Name = "Canadian Dollar", ExchangeRate = 1.25f },
-          new Currency { Code = "CNY", Name = "Chinese Yuan", ExchangeRate = 6.5f },
-          new Currency { Code = "INR", Name = "Indian Rupee", ExchangeRate = 74.0f },
-          new Currency { Code = "BRL", Name = "Brazilian Real", ExchangeRate = 5.25f },
+          new Currency { Code = "USD", Name = "US Dollar", ExchangeRate = 1.0 },
+          new Currency { Code = "EUR", Name = "Euro", ExchangeRate = 0.89 },
+          new Currency { Code = "JPY", Name = "Japanese Yen", ExchangeRate = 145.0 },
+          new Currency { Code = "ZAR", Name = "South African Rand", ExchangeRate = 18.26 },
+          new Currency { Code = "GBP", Name = "Great British Pound", ExchangeRate = 0.75 },
+          new Currency { Code = "AUD", Name = "Australian Dollar", ExchangeRate = 1.56 },
+          new Currency { Code = "CAD", Name = "Canadian Dollar", ExchangeRate = 1.25 },
+          new Currency { Code = "CNY", Name = "Chinese Yuan", ExchangeRate = 6.5 },
+          new Currency { Code = "INR", Name = "Indian Rupee", ExchangeRate = 74.0 },
+          new Currency { Code = "BRL", Name = "Brazilian Real", ExchangeRate = 5.25 },
         };
 
         private readonly ILogger<ConversionController> _logger;
@@ -43,7 +43,7 @@ namespace CurrencyConverterAPI.Controllers
         /// <returns>The converted amount in the target currency.</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid currency code is provided.</exception>
         [HttpGet("convert")]
-        public float ConvertCurrency(string from, string to, float amount = 1)
+        public double ConvertCurrency(string from, string to, double amount = 1)
         {
             var fromCurrency = Currencies.FirstOrDefault(c => c.Code == from);
             var toCurrency = Currencies.FirstOrDefault(c => c.Code == to);
@@ -65,9 +65,27 @@ namespace CurrencyConverterAPI.Controllers
         /// </summary>
         /// <returns>A list of currencies.</returns>
         [HttpGet("list")]
-        public IEnumerable<Currency> GetCurrencies()
+        public virtual IEnumerable<Currency> GetCurrencies()
         {
             return Currencies;
         }
-    }
+
+
+        [HttpGet("exchangeRate")]
+        /// <summary>
+        /// Retrieves the exchange rate for a specific currency code.
+        /// </summary>
+        /// <param name="code">The currency code to retrieve the exchange rate for.</param>
+        /// <returns>The exchange rate of the specified currency relative to USD.</returns>
+        /// <exception cref="ArgumentException">Thrown when an invalid currency code is provided.</exception>
+        public double GetExchangeRateForCurrency(string code)
+        {
+            var currency = Currencies.FirstOrDefault(c => c.Code == code); 
+            if (currency == null)
+            {
+                throw new ArgumentException("Invalid currency code.");
+            }
+            return currency.ExchangeRate;
+        }
+  }
 }
